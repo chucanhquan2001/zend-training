@@ -1,0 +1,48 @@
+<?php
+
+// Add form action URL
+$this->userForm->setAction($this->url());
+
+// Add the submit button
+$this->userForm->addElement(
+	'submit',
+	'Post Topic',
+	array(
+		'required' => true,
+		'ignore' => true,
+		'label' => 'Post User',
+		'class' => 'btn btn-small btn-success'
+	)
+);
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row" style="padding-top: 30px;">
+			<div class="col-md-12">
+				<p style="color: black; font-size: 26px">Thêm Mới User</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<?= $this->userForm; ?>
+				<a href="<?= $this->baseUrl('/user') ?>">
+					<button class="btn btn-danger">Back</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<?php
+
+
+if (count($this->paginator) >= 1) { ?>
+	<div class="container">
+		<div class="row" style="padding-top: 30px;">
+			<div class="col-md-6">
+				<p style="color: black; font-size: 26px">Danh Sách User</p>
+			</div>
+			<div class="col-md-6 text-right">
+				<a href="<?php echo $this->baseUrl('user/garbage/'); ?>">
+					<button type="button" class="btn btn-danger">Thùng rác</i></button>
+				</a>
+				<a href="<?php echo $this->baseUrl('user/create/'); ?>">
+					<button type="button" class="btn btn-primary">Thêm mới</i></button>
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<?php
+				if (isset($this->message)) {
+					echo $this->message;
+				}
+				?>
+			</div>
+		</div>
+		<div class="row" style="padding-top: 30px;">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>Created</th>
+							<th>Updated</th>
+							<th width="140px">Action</th>
+						</tr>
+					</thead>
+					<?php
+
+					foreach ($this->paginator as $key => $value) {
+					?>
+
+						<tbody>
+							<tr>
+								<td><?= $this->escape($value->id); ?></td>
+								<td><?php echo $this->escape($value->name); ?></td>
+								<td><?php echo $this->escape($value->phone); ?></td>
+								<td><?php echo $this->escape($value->email); ?></td>
+								<td><?php echo $this->escape($value->createdAt); ?></td>
+								<td><?php echo $this->escape($value->updatedAt); ?></td>
+								<td>
+									<a href="<?php echo $this->baseUrl('user/edit/' . $value->id); ?>">
+										<button type="button" class="btn btn-success"><i class="fas fa-user-edit"></i></button>
+									</a>
+									<a href="<?php echo $this->baseUrl('user/delete/' . $value->id); ?>" onclick="return confirm('Chan chan muon xoa chu nguoi anh em ?')">
+										<button type="button" class="btn btn-danger"><i class="fas fa-user-minus"></i></button>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					<?php }
+					//This is used for pagination
+					echo $this->paginationControl($this->paginator, 'Sliding', 'controls.phtml');
+					?>
+				</table>
+			</div>
+		</div>
+	</div>
+<?php } else { ?>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-info">
+					Không có bản ghi nào !
+					&nbsp;
+					<a href="<?= $this->baseUrl('user/create') ?>">
+						<button class="btn btn-primary">Thêm mới</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php } ?>

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "shardj/zf1-future": "^1.19",
+        "robmorgan/phinx": "^0.12.8"
+    }
+}
